@@ -1,0 +1,208 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model admin {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique(map: "Admin_email_key")
+  password  String
+  createdAt DateTime @default(now())
+}
+
+model adminstudentmessage {
+  id        Int      @id @default(autoincrement())
+  adminId   Int
+  studentId Int
+  content   String   @db.Text
+  createdAt DateTime @default(now())
+
+  @@index([adminId], map: "AdminStudentMessage_adminId_fkey")
+  @@index([studentId], map: "AdminStudentMessage_studentId_fkey")
+}
+
+model adminteachermessage {
+  id        Int      @id @default(autoincrement())
+  adminId   Int
+  teacherId Int
+  content   String   @db.Text
+  createdAt DateTime @default(now())
+
+  @@index([adminId], map: "AdminTeacherMessage_adminId_fkey")
+  @@index([teacherId], map: "AdminTeacherMessage_teacherId_fkey")
+}
+
+model announcement {
+  id          Int      @id @default(autoincrement())
+  title       String
+  content     String   @db.Text
+  teacherId   Int
+  classroomId Int?
+  createdAt   DateTime @default(now())
+  teacher     teacher  @relation(fields: [teacherId], references: [id], onDelete: Cascade, map: "Announcement_teacherId_fkey")
+
+  @@index([teacherId], map: "Announcement_teacherId_fkey")
+}
+
+model classroom {
+  id            Int          @id @default(autoincrement())
+  name          String       @unique(map: "Classroom_name_key")
+  level         String
+  mainTeacherId Int?
+  createdAt     DateTime     @default(now())
+  enrollment    enrollment[]
+}
+
+model course {
+  id         Int          @id @default(autoincrement())
+  title      String
+  level      String
+  hours      String
+  teacher    String
+  createdAt  DateTime     @default(now())
+  enrollment enrollment[]
+  grade      grade[]
+  schedule   schedule[]
+}
+
+model enrollment {
+  id          Int       @id @default(autoincrement())
+  studentId   Int
+  classroomId Int
+  courseId    Int
+  createdAt   DateTime  @default(now())
+  teacherId   Int?
+  classroom   classroom @relation(fields: [classroomId], references: [id], onDelete: Cascade, map: "Enrollment_classroomId_fkey")
+  course      course    @relation(fields: [courseId], references: [id], onDelete: Cascade, map: "Enrollment_courseId_fkey")
+  student     student   @relation(fields: [studentId], references: [id], onDelete: Cascade, map: "Enrollment_studentId_fkey")
+  teacher     teacher?  @relation(fields: [teacherId], references: [id], map: "Enrollment_teacherId_fkey")
+
+  @@unique([studentId, classroomId, courseId], map: "Enrollment_studentId_classroomId_courseId_key")
+  @@index([classroomId], map: "Enrollment_classroomId_fkey")
+  @@index([courseId], map: "Enrollment_courseId_fkey")
+  @@index([studentId], map: "Enrollment_studentId_idx")
+  @@index([teacherId], map: "Enrollment_teacherId_fkey")
+}
+
+model grade {
+  id        Int      @id @default(autoincrement())
+  studentId Int
+  courseId  Int
+  teacherId Int
+  grade     Float
+  type      String   @default("Contrôle")
+  date      DateTime @default(now())
+  createdAt DateTime @default(now())
+  course    course   @relation(fields: [courseId], references: [id], onDelete: Cascade, map: "Grade_courseId_fkey")
+  student   student  @relation(fields: [studentId], references: [id], onDelete: Cascade, map: "Grade_studentId_fkey")
+  teacher   teacher  @relation(fields: [teacherId], references: [id], onDelete: Cascade, map: "Grade_teacherId_fkey")
+
+  @@index([courseId], map: "Grade_courseId_idx")
+  @@index([studentId], map: "Grade_studentId_idx")
+  @@index([teacherId], map: "Grade_teacherId_fkey")
+}
+
+model message {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  content   String
+  createdAt DateTime @default(now())
+}
+
+model news {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
+  createdAt DateTime @default(now())
+}
+
+model schedule {
+  id        Int      @id @default(autoincrement())
+  courseId  Int
+  day       String
+  startTime String
+  endTime   String
+  room      String?
+  createdAt DateTime @default(now())
+  course    course   @relation(fields: [courseId], references: [id], onDelete: Cascade, map: "Schedule_courseId_fkey")
+
+  @@index([courseId], map: "Schedule_courseId_idx")
+}
+
+model session {
+  id           String   @id @unique(map: "Session_id_key")
+  sessionToken String   @unique(map: "Session_sessionToken_key")
+  userId       Int?
+  userEmail    String?
+  userType     String   @default("student")
+  expires      DateTime
+  createdAt    DateTime @default(now())
+}
+
+model settings {
+  id           Int      @id @default(autoincrement())
+  siteName     String   @default("GSEAB")
+  contactEmail String?
+  contactPhone String?
+  address      String?
+  updatedAt    DateTime
+}
+
+model student {
+  id                                                 Int              @id @default(autoincrement())
+  name                                               String
+  email                                              String           @unique(map: "Student_email_key")
+  password                                           String           @default("password123")
+  class                                              String
+  createdAt                                          DateTime         @default(now())
+  enrollment                                         enrollment[]
+  grade                                              grade[]
+  studentmessage_studentmessage_recipientIdTostudent studentmessage[] @relation("studentmessage_recipientIdTostudent")
+  studentmessage_studentmessage_senderIdTostudent    studentmessage[] @relation("studentmessage_senderIdTostudent")
+  teachermessage                                     teachermessage[]
+}
+
+model studentmessage {
+  id                                          Int      @id @default(autoincrement())
+  senderId                                    Int
+  recipientId                                 Int
+  content                                     String   @db.Text
+  createdAt                                   DateTime @default(now())
+  student_studentmessage_recipientIdTostudent student  @relation("studentmessage_recipientIdTostudent", fields: [recipientId], references: [id], onDelete: Cascade, map: "StudentMessage_recipientId_fkey")
+  student_studentmessage_senderIdTostudent    student  @relation("studentmessage_senderIdTostudent", fields: [senderId], references: [id], onDelete: Cascade, map: "StudentMessage_senderId_fkey")
+
+  @@index([recipientId], map: "StudentMessage_recipientId_fkey")
+  @@index([senderId], map: "StudentMessage_senderId_fkey")
+}
+
+model teacher {
+  id             Int              @id @default(autoincrement())
+  name           String
+  email          String           @unique(map: "Teacher_email_key")
+  password       String           @default("password123")
+  subject        String
+  phone          String?
+  createdAt      DateTime         @default(now())
+  announcement   announcement[]
+  enrollment     enrollment[]
+  grade          grade[]
+  teachermessage teachermessage[]
+}
+
+model teachermessage {
+  id        Int      @id @default(autoincrement())
+  teacherId Int
+  studentId Int
+  content   String   @db.Text
+  createdAt DateTime @default(now())
+  student   student  @relation(fields: [studentId], references: [id], onDelete: Cascade, map: "TeacherMessage_studentId_fkey")
+  teacher   teacher  @relation(fields: [teacherId], references: [id], onDelete: Cascade, map: "TeacherMessage_teacherId_fkey")
+
+  @@index([studentId], map: "TeacherMessage_studentId_fkey")
+  @@index([teacherId], map: "TeacherMessage_teacherId_fkey")
+}
