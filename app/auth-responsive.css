@@ -1,0 +1,91 @@
+/* Responsive Login & Register Pages */
+
+/* Mobile (max 768px) */
+@media (max-width: 768px) {
+  /* Container principal */
+  div[style*="minHeight: '100vh'"][style*="padding: '2rem'"] {
+    padding: 1rem !important;
+  }
+  
+  /* Card de login/register */
+  div[style*="maxWidth: '500px'"],
+  div[style*="maxWidth: '550px'"] {
+    padding: 2rem 1.5rem !important;
+    max-width: 100% !important;
+  }
+  
+  /* Logo */
+  div[style*="marginBottom: '3rem'"] > div {
+    margin-bottom: 2rem !important;
+  }
+  
+  /* Titre */
+  h1[style*="fontSize: '2.5rem'"] {
+    font-size: 1.75rem !important;
+  }
+  
+  /* Description */
+  p[style*="fontSize: '1.1rem'"] {
+    font-size: 1rem !important;
+  }
+  
+  /* Boutons de rôle */
+  div[style*="display: 'flex'"][style*="gap: '0.5rem'"] button {
+    padding: 0.7rem 0.5rem !important;
+    font-size: 0.85rem !important;
+  }
+  
+  /* Inputs */
+  input[type="email"],
+  input[type="password"],
+  input[type="text"] {
+    padding: 1rem !important;
+    font-size: 0.95rem !important;
+  }
+  
+  /* Labels */
+  label {
+    font-size: 0.85rem !important;
+  }
+  
+  /* Bouton submit */
+  button[type="submit"] {
+    padding: 1rem !important;
+    font-size: 1rem !important;
+  }
+  
+  /* Liens */
+  div[style*="textAlign: 'center'"] a {
+    padding: 0.7rem 1.25rem !important;
+    font-size: 0.9rem !important;
+  }
+  
+  /* ThemeToggle position */
+  div[style*="position: 'absolute'"][style*="top: '2.5rem'"] {
+    top: 1rem !important;
+    right: 1rem !important;
+  }
+  
+  /* Formulaire avec prénom/nom */
+  div[style*="display: 'flex'"][style*="gap: '1.25rem'"] {
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+}
+
+/* Très petits mobiles (max 480px) */
+@media (max-width: 480px) {
+  div[style*="maxWidth: '500px'"],
+  div[style*="maxWidth: '550px'"] {
+    padding: 1.5rem 1rem !important;
+  }
+  
+  h1[style*="fontSize: '2.5rem'"] {
+    font-size: 1.5rem !important;
+  }
+  
+  div[style*="display: 'flex'"][style*="gap: '0.5rem'"] button {
+    padding: 0.6rem 0.3rem !important;
+    font-size: 0.75rem !important;
+  }
+}

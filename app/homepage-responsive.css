@@ -1,0 +1,137 @@
+/* Responsive Homepage */
+
+/* Mobile (max 768px) */
+@media (max-width: 768px) {
+  /* Hero Section */
+  section:first-child {
+    flex-direction: column !important;
+    padding: 3rem 1.5rem !important;
+    gap: 2rem !important;
+    min-height: auto !important;
+  }
+  
+  section:first-child h1 {
+    font-size: 2rem !important;
+  }
+  
+  section:first-child p {
+    font-size: 1rem !important;
+  }
+  
+  section:first-child > div:first-child {
+    max-width: 100% !important;
+  }
+  
+  section:first-child > div:last-child {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+  
+  section:first-child > div:last-child > div {
+    max-width: 100% !important;
+    transform: none !important;
+  }
+  
+  section:first-child div[style*="display: flex"][style*="gap"] {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+  
+  section:first-child a {
+    width: 100% !important;
+    text-align: center !important;
+  }
+  
+  /* Sections générales */
+  section {
+    padding: 3rem 1.5rem !important;
+  }
+  
+  section h2 {
+    font-size: 2rem !important;
+    margin-bottom: 2rem !important;
+  }
+  
+  section h3 {
+    font-size: 1.5rem !important;
+  }
+  
+  section p {
+    font-size: 1rem !important;
+  }
+  
+  /* Grilles */
+  section div[style*="display: grid"] {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  
+  /* Installations */
+  section div[style*="display: flex"][style*="gap: '6rem'"] {
+    flex-direction: column !important;
+    gap: 2rem !important;
+  }
+  
+  section div[style*="flex: '1 1 500px'"] {
+    flex: 1 1 100% !important;
+  }
+  
+  section div[style*="borderRadius: '3rem'"] {
+    border-radius: 1rem !important;
+    border-width: 4px !important;
+    transform: none !important;
+  }
+  
+  /* Badge bienvenue */
+  section div[style*="borderRadius: '999px'"] {
+    font-size: 0.75rem !important;
+    padding: 0.5rem 1rem !important;
+  }
+}
+
+/* Très petits mobiles (max 480px) */
+@media (max-width: 480px) {
+  section {
+    padding: 2rem 1rem !important;
+  }
+  
+  section:first-child h1 {
+    font-size: 1.75rem !important;
+  }
+  
+  section h2 {
+    font-size: 1.75rem !important;
+  }
+  
+  section h3 {
+    font-size: 1.25rem !important;
+  }
+  
+  .card-premium {
+    padding: 1rem !important;
+  }
+  
+  section:first-child a {
+    padding: 0.75rem 1.5rem !important;
+    font-size: 0.9rem !important;
+  }
+}
+
+/* Tablette (max 1024px) */
+@media (max-width: 1024px) {
+  section:first-child {
+    padding: 5rem 3rem !important;
+  }
+  
+  section:first-child h1 {
+    font-size: 3rem !important;
+  }
+  
+  section {
+    padding: 5rem 3rem !important;
+  }
+  
+  section h2 {
+    font-size: 2.5rem !important;
+  }
+}

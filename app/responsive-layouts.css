@@ -1,0 +1,159 @@
+/* Styles responsive pour les layouts Student, Teacher, Admin */
+
+/* Desktop par défaut - pas de changements */
+
+/* Tablette (max 1024px) */
+@media (max-width: 1024px) {
+  /* Réduire la largeur de la sidebar */
+  aside {
+    width: 250px !important;
+  }
+  
+  main {
+    margin-left: 250px !important;
+  }
+  
+  /* Réduire le padding */
+  main > div {
+    padding: 2rem !important;
+  }
+}
+
+/* Mobile (max 768px) */
+@media (max-width: 768px) {
+  /* Cacher la sidebar par défaut */
+  aside:not(.mobile-open) {
+    transform: translateX(-100%);
+    position: fixed;
+  }
+  
+  /* Main content prend toute la largeur */
+  main {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+  
+  main > div {
+    padding: 1rem !important;
+  }
+  
+  /* Header mobile */
+  header {
+    padding: 0.5rem 1rem !important;
+    height: auto !important;
+    min-height: 60px !important;
+  }
+  
+  header > div {
+    gap: 0.5rem !important;
+    flex-wrap: wrap;
+    justify-content: space-between !important;
+  }
+  
+  /* Profil utilisateur mobile */
+  header div[style*="borderRadius: '999px'"] {
+    padding: 0.4rem 0.8rem !important;
+    font-size: 0.8rem !important;
+  }
+  
+  header div[style*="borderRadius: '999px'"] span {
+    display: none; /* Cacher le texte, garder juste l'avatar */
+  }
+  
+  header div[style*="borderRadius: '50%'"] {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 0.75rem !important;
+  }
+  
+  /* Navigation links dans sidebar */
+  aside nav a {
+    padding: 0.8rem 1rem !important;
+    font-size: 0.9rem !important;
+  }
+  
+  aside nav a span {
+    font-size: 1rem !important;
+  }
+  
+  /* Logo dans sidebar */
+  aside > div:first-child {
+    padding: 0 0.75rem !important;
+    margin-bottom: 2rem !important;
+  }
+  
+  /* Boutons dans sidebar */
+  aside button, aside a[style*="padding"] {
+    padding: 0.8rem !important;
+    font-size: 0.85rem !important;
+  }
+  
+  /* Cards et grilles */
+  div[style*="display: grid"] {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  
+  /* Stats cards */
+  div[style*="display: flex"][style*="gap"] {
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+  
+  /* Tables */
+  table {
+    font-size: 0.85rem !important;
+  }
+  
+  table th, table td {
+    padding: 0.5rem !important;
+  }
+  
+  /* Forms */
+  form {
+    gap: 1rem !important;
+  }
+  
+  form input, form select, form textarea {
+    padding: 0.75rem !important;
+    font-size: 0.9rem !important;
+  }
+  
+  form button {
+    padding: 0.75rem !important;
+    font-size: 0.9rem !important;
+  }
+  
+  /* Modals */
+  div[style*="position: fixed"][style*="inset: 0"] > div {
+    width: 95% !important;
+    max-width: none !important;
+    margin: 1rem !important;
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+  }
+}
+
+/* Très petits mobiles (max 480px) */
+@media (max-width: 480px) {
+  main > div {
+    padding: 0.75rem !important;
+  }
+  
+  header {
+    padding: 0.5rem !important;
+  }
+  
+  aside {
+    width: 85% !important;
+    max-width: 280px !important;
+  }
+  
+  table {
+    font-size: 0.75rem !important;
+  }
+  
+  table th, table td {
+    padding: 0.4rem !important;
+  }
+}

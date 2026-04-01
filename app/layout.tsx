@@ -1,4 +1,7 @@
 import './globals.css';
+import './responsive-layouts.css';
+import './homepage-responsive.css';
+import './auth-responsive.css';
 import { ReactNode } from 'react';
 import ClientWrapper from './components/ClientWrapper';
 
@@ -10,6 +13,9 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="fr">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      </head>
       <body>
         <ClientWrapper>
           {children}

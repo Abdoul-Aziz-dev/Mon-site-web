@@ -9,6 +9,11 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Tous les champs sont requis' }, { status: 400 });
     }
 
+    // Bloquer la création de comptes admin
+    if (role === 'Admin') {
+      return NextResponse.json({ error: 'La création de comptes administrateur n\'est pas autorisée' }, { status: 403 });
+    }
+
     const timeout = new Promise((_, reject) => 
       setTimeout(() => reject(new Error('Timeout')), 3000)
     );
@@ -58,27 +63,6 @@ export async function POST(request: Request) {
       return NextResponse.json({
         success: true,
         user: { id: teacher.id, email: teacher.email, role: 'teacher', name: teacher.name }
-      });
-
-    } else if (role === 'Admin') {
-      const existing = await prisma.admin.findUnique({ where: { email } });
-      if (existing) {
-        return NextResponse.json({ error: 'Cet email existe déjà' }, { status: 400 });
-      }
-
-      const admin = await Promise.race([
-        prisma.admin.create({
-          data: {
-            email,
-            password
-          }
-        }),
-        timeout
-      ]) as any;
-
-      return NextResponse.json({
-        success: true,
-        user: { id: admin.id, email: admin.email, role: 'admin', name: 'Administrateur' }
       });
     }
 

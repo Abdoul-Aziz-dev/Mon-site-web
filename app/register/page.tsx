@@ -81,7 +81,6 @@ export default function Register() {
             <div style={{ display: 'flex', gap: '0.5rem', background: 'var(--surface-hover)', padding: '0.5rem', borderRadius: '14px', border: '1px solid var(--surface-border)' }}>
                <button type="button" onClick={() => setRole('Etudiant')} style={{ flex: 1, padding: '0.8rem', border: 'none', background: role === 'Etudiant' ? 'var(--surface)' : 'transparent', color: role === 'Etudiant' ? 'var(--primary)' : 'var(--text-muted)', borderRadius: '10px', fontWeight: 700, cursor: 'pointer', transition: 'all 0.2s ease', boxShadow: role === 'Etudiant' ? 'var(--shadow-sm)' : 'none' }}>👨🎓 Élève</button>
                <button type="button" onClick={() => setRole('Professeur')} style={{ flex: 1, padding: '0.8rem', border: 'none', background: role === 'Professeur' ? 'var(--surface)' : 'transparent', color: role === 'Professeur' ? 'var(--text-main)' : 'var(--text-muted)', borderRadius: '10px', fontWeight: 700, cursor: 'pointer', transition: 'all 0.2s ease', boxShadow: role === 'Professeur' ? 'var(--shadow-sm)' : 'none' }}>🧑🏫 Enseignant</button>
-               <button type="button" onClick={() => setRole('Admin')} style={{ flex: 1, padding: '0.8rem', border: 'none', background: role === 'Admin' ? 'var(--surface)' : 'transparent', color: role === 'Admin' ? 'var(--primary)' : 'var(--text-muted)', borderRadius: '10px', fontWeight: 700, cursor: 'pointer', transition: 'all 0.2s ease', boxShadow: role === 'Admin' ? 'var(--shadow-sm)' : 'none' }}>🛡️ Admin</button>
             </div>
           </div>
 
