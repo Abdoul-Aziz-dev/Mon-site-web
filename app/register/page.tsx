@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import ThemeToggle from '../components/ThemeToggle';
 import Logo from '../components/Logo';
+export const dynamic = 'force-dynamic';
 
 export default function Register() {
   const router = useRouter();
