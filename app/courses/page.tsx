@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 export default function Courses() {
   const courses = [
     { title: "Développement Web", duration: "6 mois", description: "Formation intensive en React, Node.js et bases de données." },
