@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import Logo from './components/Logo';
+export const dynamic = 'force-dynamic';
 
 async function getLatestNews() {
   try {
