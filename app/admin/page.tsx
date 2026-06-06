@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 import AddStudentButton from "@/app/components/admin/AddStudentButton";
 import AddNewsButton from "@/app/components/admin/AddNewsButton";
 import AddTeacherButton from "@/app/components/admin/AddTeacherButton";
+export const dynamic = 'force-dynamic';
 
 export default async function AdminDashboard() {
   // Fetch real stats from database
